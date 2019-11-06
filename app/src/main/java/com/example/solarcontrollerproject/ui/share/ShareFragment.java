@@ -16,6 +16,7 @@ import com.example.solarcontrollerproject.R;
 
 public class ShareFragment extends Fragment {
 
+
     private ShareViewModel shareViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
