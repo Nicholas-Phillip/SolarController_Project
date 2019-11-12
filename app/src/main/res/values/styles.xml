@@ -27,4 +27,13 @@
         <item name="colorPrimaryDark">@android:color/white</item>
     </style>
 
+    <style name="AppTheme.LaunchScreen.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.LaunchScreen.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.LaunchScreen.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
