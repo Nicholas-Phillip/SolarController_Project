@@ -35,7 +35,8 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         findAllViewsfromLayout();
-        LoggingIn();
+
+        LoggingIn(); //change to start up
     }
 
     private void LoggingIn() {
@@ -49,18 +50,21 @@ public class login extends AppCompatActivity {
             }
         });
 
+
         login.setOnClickListener(new View.OnClickListener() {  //if user clicks login
             @Override
             public void onClick(View v) {
                 Login(String.valueOf(email.getText()),String.valueOf(password.getText()));
+                //LoggingIn();
             }
         });
     }
 
     private void findAllViewsfromLayout() {
         email = findViewById(R.id.email);
-        register = findViewById(R.id.login);
+        register = findViewById(R.id.register);
         password = findViewById(R.id.password);
+        login= findViewById(R.id.login);
         //signout = findViewById(R.id.signout);
     }
 
