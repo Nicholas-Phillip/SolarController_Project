@@ -37,7 +37,6 @@
     <string name="help_message">The application will give you the power to monitor your solar panels activity. It also provide an automatic or manual control to the positioning of your solar panels. The controls you see in the control screen adjusts the rotation and tilt of your panels and/or enabling the automatic tracking will direct your panels on the best position according to the current position of the sun.   If you need any more help, you can contact our customer support email @solarcontrol@humber.ca and telephone #: 416 829 0291.</string>
 
 
-
     <string-array name="language_entries">
         <item>English</item>
         <item>French</item>
@@ -47,5 +46,17 @@
         <item>2</item>
     </string-array>
     <string name="title_activity_login">Login</string>
+    <string name="login">login</string>
+    <string name="signin">sign in</string>
+    <string name="risgister">Register New User</string>
+    <string name="signout">Sign out</string>
+    <string name="email">enter email</string>
+    <string name="password">password</string>
+    <string name="Login">to Login screen</string>
+    <string name="quit">Quit</string>
+    <string name="title_activity_register">Register</string>
+    <string name="password1">password</string>
+    <string name="password2">password</string>
+    <string name="register1">Register New User</string>
 
 </resources>

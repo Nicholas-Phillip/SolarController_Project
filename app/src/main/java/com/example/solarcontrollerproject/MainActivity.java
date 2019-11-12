@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        else if (id == R.id.login) {
-            Intent intent0 = new Intent(this, login.class);
+        else if (id == R.id.signin) {
+            Intent intent0 = new Intent(this, Login.class);
             startActivity(intent0);
             return true;
         }
