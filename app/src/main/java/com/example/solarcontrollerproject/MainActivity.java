@@ -107,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent0);
             return true;
         }
+        else if (id == R.id.writedata) {
+            Intent intent1 = new Intent(this, WriteDB.class);
+            startActivity(intent1);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

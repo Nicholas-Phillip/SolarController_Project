@@ -3,10 +3,10 @@ package com.example.solarcontrollerproject;
 public class ReadingsStructure {
 
         //position
-        private int longitude;
-        private int latitude;
-        private int elevation;
-        private long  azimuth;
+        private String longitude;
+        private String latitude;
+        private String elevation;
+        private String  azimuth;
         private String timezone;
         //readings
         private double currentHarvest;
@@ -14,47 +14,47 @@ public class ReadingsStructure {
         private double totalHarvest;  //30 minute harvest
         private long timestamp;
 
-    public ReadingsStructure(int longitude, int latitude, int elevation, long azimuth, String timezone, double currentHarvest, double averageHarvest, double totalHarvest, long timestamp) {
+
+
+    public ReadingsStructure(String longitude, String latitude, String elevation, String azimuth, String timezone) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.elevation = elevation;
         this.azimuth = azimuth;
         this.timezone = timezone;
-        this.currentHarvest = currentHarvest;
-        this.averageHarvest = averageHarvest;
-        this.totalHarvest = totalHarvest;
-        this.timestamp = timestamp;
     }
 
-    public int getLongitude() {
+    public ReadingsStructure(){}
+
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
-    public int getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public int getElevation() {
+    public String getElevation() {
         return elevation;
     }
 
-    public void setElevation(int elevation) {
+    public void setElevation(String elevation) {
         this.elevation = elevation;
     }
 
-    public long getAzimuth() {
+    public String getAzimuth() {
         return azimuth;
     }
 
-    public void setAzimuth(long azimuth) {
+    public void setAzimuth(String azimuth) {
         this.azimuth = azimuth;
     }
 
@@ -95,6 +95,18 @@ public class ReadingsStructure {
     }
 
     public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public ReadingsStructure(String longitude, String latitude, String elevation, String azimuth, String timezone, double currentHarvest, double averageHarvest, double totalHarvest, long timestamp) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.elevation = elevation;
+        this.azimuth = azimuth;
+        this.timezone = timezone;
+        this.currentHarvest = currentHarvest;
+        this.averageHarvest = averageHarvest;
+        this.totalHarvest = totalHarvest;
         this.timestamp = timestamp;
     }
 }

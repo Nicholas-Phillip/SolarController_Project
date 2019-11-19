@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.LaunchScreen">
+        <activity android:name=".WriteDB"></activity>
         <activity
             android:name=".Register"
             android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.LaunchScreen.NoActionBar"></activity>
+            android:theme="@style/AppTheme.LaunchScreen.NoActionBar" />
         <activity
             android:name=".Login"
             android:label="@string/title_activity_login"

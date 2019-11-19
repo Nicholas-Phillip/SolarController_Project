@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Tsign out was pressed ",
+                Toast.makeText(getApplicationContext(), "Sign out was pressed ",
                        Toast.LENGTH_LONG).show();
                 SignoutfromDatabase();
             }
