@@ -134,6 +134,8 @@ public class Login extends AppCompatActivity {
 
     public void Goto_main_screen() {
         Intent i = new Intent (this, MainActivity.class);
+        String User=(email.getText().toString());
+        i.putExtra("email",User);
         startActivity(i);
     }
 

@@ -20,6 +20,13 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer" >
+
+        <TextView
+            android:id="@+id/ShowUser"
+            android:layout_width="195dp"
+            android:layout_height="32dp"
+            android:text="@string/nav_header_subtitle" />
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

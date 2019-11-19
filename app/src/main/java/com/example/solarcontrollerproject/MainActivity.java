@@ -22,9 +22,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView user;
     private AppBarConfiguration mAppBarConfiguration;
     FloatingActionButton fabshare;
 
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -73,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
+
+  /*  private void showuser()  //finsih diplaying user when logged in
+    {
+        user = findViewById(R.id.ShowUser);
+        user.setText("User "+ user.getUser() + " is now Logged In");
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
