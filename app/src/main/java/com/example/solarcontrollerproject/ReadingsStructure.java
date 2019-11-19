@@ -1,4 +1,4 @@
-package com.example.solarcontrollerproject.ui;
+package com.example.solarcontrollerproject;
 
 public class ReadingsStructure {
 
