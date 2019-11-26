@@ -37,8 +37,7 @@ public class Login extends AppCompatActivity {
     private EditText password;
     private EditText firstname;
     private EditText lastname;
-    private TextView displayname;
-    private TextView displayemail;
+
 
 
     SharedPreferences sharedPref;
@@ -118,8 +117,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Sign Successful: Welcome" + user.getEmail(),
                                     Toast.LENGTH_LONG).show();
                             message.setText("User "+ user.getEmail() + " is now Logged In");
-                            displayemail.setText(user.getEmail());
-                            displayname.setText(user.getDisplayName());
+
                             Goto_main_screen();
 
                         } else {
@@ -139,8 +137,7 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         signout = findViewById(R.id.signout);
-        displayemail = findViewById(R.id.tv_email);
-        displayname = findViewById(R.id.tv_name);
+
     }
 
     public void Goto_main_screen() {

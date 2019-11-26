@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class Register extends AppCompatActivity {
 
@@ -76,6 +77,7 @@ public class Register extends AppCompatActivity {
         String registerEmail = String.valueOf(email.getText());
         String registerPassword1 = String.valueOf(password1.getText());
         String registerPassword2 = String.valueOf(password2.getText());
+        final String name = String.valueOf(Firstname.getText()) +String.valueOf(lastname.getText());
 
         if (registerEmail.length() == 0 || password1.length() == 0 || password2.length() == 0){
             Toast.makeText(getApplicationContext(), "The email and/or password cannot be empty",
@@ -97,6 +99,11 @@ public class Register extends AppCompatActivity {
                             Log.d("MapleLeaf", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             message.setText("New user "+ user.getEmail() + lastname + " is now registered");
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(name).build();
+
+                            user.updateProfile(profileUpdates);
+
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.

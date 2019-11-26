@@ -15,6 +15,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -25,10 +27,12 @@ import android.view.Menu;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    private FirebaseAuth mAuth;
     private TextView user;
     private AppBarConfiguration mAppBarConfiguration;
     FloatingActionButton fabshare;
+    //private TextView displayname;
+     //private TextView displayemail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
-
+        //displayemail = findViewById(R.id.tv_email);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        //displayemail.setText(String.valueOf(user.getEmail()));
+        View headerView = navigationView.getHeaderView(0);
+        TextView navemail = (TextView) headerView.findViewById(R.id.tv_email);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.tv_displayname);
+        navemail.setText(user.getEmail());
+        navUsername.setText(user.getDisplayName());
+
     }
 
   /*  private void showuser()  //finsih diplaying user when logged in
