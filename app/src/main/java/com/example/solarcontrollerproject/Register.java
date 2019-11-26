@@ -31,6 +31,8 @@ public class Register extends AppCompatActivity {
     private EditText password1;
     private EditText password2;
     private Button  register1;
+    private EditText Firstname;
+    private EditText lastname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class Register extends AppCompatActivity {
         email = findViewById(R.id.email);
         password1 = findViewById(R.id.password1);
         password2 = findViewById(R.id.password2);
+        Firstname = findViewById(R.id.firstname);
+        lastname = findViewById(R.id.lastname);
 
     }
 
@@ -92,7 +96,7 @@ public class Register extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("MapleLeaf", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            message.setText("New user "+ user.getEmail() + " is now registered");
+                            message.setText("New user "+ user.getEmail() + lastname + " is now registered");
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.

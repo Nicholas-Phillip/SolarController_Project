@@ -34,6 +34,8 @@ public class Login extends AppCompatActivity {
     private Button signout;
     private EditText email;
     private EditText password;
+    private EditText firstname;
+    private EditText lastname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +64,8 @@ public class Login extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "register",
-                       Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "register",
+                 //      Toast.LENGTH_LONG).show();
                 createNewUser(String.valueOf(email.getText()), String.valueOf(password.getText()));
             }
         });
@@ -80,7 +82,7 @@ public class Login extends AppCompatActivity {
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Sign out was pressed ",
+                Toast.makeText(getApplicationContext(), "You have been Signed Out",
                        Toast.LENGTH_LONG).show();
                 SignoutfromDatabase();
             }

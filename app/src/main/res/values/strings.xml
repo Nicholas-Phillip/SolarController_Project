@@ -56,7 +56,9 @@
     <string name="quit">Quit</string>
     <string name="title_activity_register">Register</string>
     <string name="password1">password</string>
-    <string name="password2">password</string>
+    <string name="password2">Enter password Again</string>
     <string name="register1">Register New User</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
 
 </resources>
