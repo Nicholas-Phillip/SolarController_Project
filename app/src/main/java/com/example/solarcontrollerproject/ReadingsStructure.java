@@ -1,7 +1,8 @@
 package com.example.solarcontrollerproject;
 
 public class ReadingsStructure {
-
+        //user info
+        //private String name;
         //position
         private String longitude;
         private String latitude;
