@@ -31,7 +31,7 @@ public class Register extends AppCompatActivity {
     private EditText password1;
     private EditText password2;
     private Button  register1;
-    private EditText Firstname;
+    private EditText firstname;
     private EditText lastname;
 
     @Override
@@ -65,7 +65,7 @@ public class Register extends AppCompatActivity {
         email = findViewById(R.id.email);
         password1 = findViewById(R.id.password1);
         password2 = findViewById(R.id.password2);
-        Firstname = findViewById(R.id.Firstname);
+        firstname = findViewById(R.id.Firstname);
         lastname = findViewById(R.id.Lastname);
 
     }
@@ -76,6 +76,7 @@ public class Register extends AppCompatActivity {
         String registerEmail = String.valueOf(email.getText());
         String registerPassword1 = String.valueOf(password1.getText());
         String registerPassword2 = String.valueOf(password2.getText());
+       final String registerFirstname = String.valueOf(firstname.getText());  // might not use
 
         if (registerEmail.length() == 0 || password1.length() == 0 || password2.length() == 0){
             Toast.makeText(getApplicationContext(), "The email and/or password cannot be empty",
@@ -96,7 +97,8 @@ public class Register extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("MapleLeaf", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            message.setText("New user "+ user.getEmail() + lastname + " is now registered");
+                            message.setText("New user "+ user.getEmail() +  " is now registered");
+
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.

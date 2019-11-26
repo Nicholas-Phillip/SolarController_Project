@@ -1,9 +1,10 @@
-package com.example.solarcontrollerproject.ui.send;
+package com.example.solarcontrollerproject.ui.Logout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -13,8 +14,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.solarcontrollerproject.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SendFragment extends Fragment {
+
+    private Button Logout;
+    private FirebaseAuth mAuth;
 
     private SendViewModel sendViewModel;
 
@@ -30,7 +35,26 @@ public class SendFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        Logout = root.findViewById(R.id.Logout_button);
+
         return root;
     }
+    private void signout()
+    {
+        mAuth = FirebaseAuth.getInstance();
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 //Toast.makeText(getApplicationContext(), "You have been Signed Out",
+                   //   Toast.LENGTH_LONG).show();
+                SignoutfromDatabase();
+            }
+        });
+    }
 
+    private void SignoutfromDatabase(){
+        // TODO: Logout from Firebase.
+        mAuth.signOut();
+    }
 }

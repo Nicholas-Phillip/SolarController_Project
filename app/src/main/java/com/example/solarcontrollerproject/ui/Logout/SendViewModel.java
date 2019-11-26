@@ -1,4 +1,4 @@
-package com.example.solarcontrollerproject.ui.send;
+package com.example.solarcontrollerproject.ui.Logout;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

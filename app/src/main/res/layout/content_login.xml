@@ -10,15 +10,15 @@
 
     <Button
         android:id="@+id/signout"
-        android:layout_width="131dp"
-        android:layout_height="50dp"
+        android:layout_width="145dp"
+        android:layout_height="59dp"
         android:text="@string/signout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.715" />
+        app:layout_constraintVertical_bias="0.699" />
 
     <TextView
         android:id="@+id/message1"
@@ -33,41 +33,41 @@
 
     <Button
         android:id="@+id/signin"
-        android:layout_width="122dp"
-        android:layout_height="45dp"
+        android:layout_width="146dp"
+        android:layout_height="55dp"
         android:text="@string/signin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.448" />
 
     <Button
         android:id="@+id/register"
-        android:layout_width="150dp"
-        android:layout_height="69dp"
+        android:layout_width="141dp"
+        android:layout_height="65dp"
         android:text="@string/risgister"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583" />
+        app:layout_constraintVertical_bias="0.579" />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="233dp"
-        android:layout_height="44dp"
+        android:layout_width="205dp"
+        android:layout_height="42dp"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintVertical_bias="0.205" />
 
     <EditText
         android:id="@+id/password"

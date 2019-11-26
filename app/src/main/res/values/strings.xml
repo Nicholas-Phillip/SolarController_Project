@@ -60,5 +60,7 @@
     <string name="register1">Register New User</string>
     <string name="firstname">First Name</string>
     <string name="lastname">Last Name</string>
+    <string name="logout_text">You Can LogOut Here</string>
+    <string name="LogOut">Logout</string>
 
 </resources>
