@@ -1,5 +1,7 @@
 package com.example.solarcontrollerproject;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class Register extends AppCompatActivity {
 
@@ -34,6 +37,7 @@ public class Register extends AppCompatActivity {
     private EditText Firstname;
     private EditText lastname;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme_NoActionBar);
@@ -42,6 +46,7 @@ public class Register extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FindAllViews();
+
         register1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +72,6 @@ public class Register extends AppCompatActivity {
         password2 = findViewById(R.id.password2);
         Firstname = findViewById(R.id.Firstname);
         lastname = findViewById(R.id.Lastname);
-
     }
 
     private void startRegisteration()
@@ -76,6 +80,9 @@ public class Register extends AppCompatActivity {
         String registerEmail = String.valueOf(email.getText());
         String registerPassword1 = String.valueOf(password1.getText());
         String registerPassword2 = String.valueOf(password2.getText());
+        String fname = String.valueOf(Firstname.getText());
+        String lname = String.valueOf(lastname.getText());
+        final String name = fname + lname;
 
         if (registerEmail.length() == 0 || password1.length() == 0 || password2.length() == 0){
             Toast.makeText(getApplicationContext(), "The email and/or password cannot be empty",
@@ -86,17 +93,25 @@ public class Register extends AppCompatActivity {
         {
             Toast.makeText(getApplicationContext(), "The password does't match, cannot continue",
                     Toast.LENGTH_LONG).show();
+            return;
         }
         mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(registerEmail, registerPassword1)
+
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("MapleLeaf", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            message.setText("New user "+ user.getEmail() + lastname + " is now registered");
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(name).build();
+
+                            user.updateProfile(profileUpdates);
+                            message.setText("New user "+ user.getDisplayName() +" is now registered");
+
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
