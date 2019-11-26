@@ -54,6 +54,7 @@ public class SendFragment extends Fragment {
     }
 
     private void SignoutfromDatabase(){
+        //
         // TODO: Logout from Firebase.
         mAuth.signOut();
     }
