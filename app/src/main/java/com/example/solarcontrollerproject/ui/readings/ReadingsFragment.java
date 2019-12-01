@@ -69,7 +69,7 @@ public class ReadingsFragment extends Fragment{
         azimuth = root.findViewById(R.id.tv_azimuth);
         timezone = root.findViewById(R.id.tv_timezone);
         timestamp = root.findViewById(R.id.tv_timestamp);
-        barchart = root.findViewById(R.id.firebasebar_chart);
+       // barchart = root.findViewById(R.id.firebasebar_chart);
 
         getDatabase();
         reterieveData();
