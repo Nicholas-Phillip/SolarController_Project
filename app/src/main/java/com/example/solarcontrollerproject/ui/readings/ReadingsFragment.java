@@ -61,7 +61,7 @@ public class ReadingsFragment extends Fragment{
         elevation = root.findViewById(R.id.tv_elevation);
         azimuth = root.findViewById(R.id.tv_azimuth);
         timezone = root.findViewById(R.id.tv_timezone);
-       // timestamp = root.findViewById(R.id.tv_timestamp);
+        timestamp = root.findViewById(R.id.tv_timestamp);
         getDatabase();
         reterieveData();
 
