@@ -114,7 +114,7 @@ public class Login extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("MapleLeaf", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(getApplicationContext(), "Sign Successful: Welcome" + user.getEmail(),
+                            Toast.makeText(getApplicationContext(), "Sign Successful: Welcome " + user.getEmail(),
                                     Toast.LENGTH_LONG).show();
                             message.setText("User "+ user.getEmail() + " is now Logged In");
 

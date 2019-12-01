@@ -62,5 +62,10 @@
     <string name="lastname">Last Name</string>
     <string name="logout_text">You Can LogOut Here</string>
     <string name="LogOut">Logout</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="elevation">Elevation</string>
+    <string name="azimuth">Azimuth</string>
+    <string name="timezone">Timezone</string>
 
 </resources>
