@@ -80,11 +80,18 @@ public class WriteDB extends AppCompatActivity {
         // TODO: Get the timestamp
         Long time = System.currentTimeMillis()/1000;
         String timestamp = time.toString();
+         double currentHarvest = (int)(Math.random()*((100-45)+1))+45;
+         double averageHarvest = (int)(Math.random()*((100-45)+1))+45;
+         double totalHarvest = (int)(Math.random()*((100-45)+1))+45;
+
         return new ReadingsStructure(String.valueOf(longitude),
                 String.valueOf(latitude),
                 String.valueOf(elevation),
                 String.valueOf(azimuth),
                 String.valueOf(timezone1),
+                currentHarvest,
+                averageHarvest,
+                totalHarvest,
                 timestamp);
     }
     private void getDatabase(){

@@ -106,6 +106,7 @@ public class ReadingsFragment extends Fragment{
                     timestamp.setText(convertTimestamp(ds.getTimestamp()));
 
 
+
             }
 
             @Override
@@ -141,7 +142,11 @@ public class ReadingsFragment extends Fragment{
                         dataStructure.setElevation(a.getValue(ReadingsStructure.class).getElevation());
                         dataStructure.setTimezone(a.getValue(ReadingsStructure.class).getTimezone());
                         dataStructure.setAzimuth(a.getValue(ReadingsStructure.class).getAzimuth());
+                        dataStructure.setCurrentHarvest(a.getValue(ReadingsStructure.class).getCurrentHarvest());
+                        dataStructure.setAverageHarvest(a.getValue(ReadingsStructure.class).getAverageHarvest());
+                        dataStructure.setTotalHarvest(a.getValue(ReadingsStructure.class).getTotalHarvest());
                         dataStructure.setTimestamp(a.getValue(ReadingsStructure.class).getTimestamp());
+
                         arraylist.add(dataStructure);  // now all the data is in arraylist.
                         Log.d("MapleLeaf", "dataStructure " + dataStructure.getTimestamp());
                     }
