@@ -42,6 +42,7 @@ public class ReadingsFragment extends Fragment{
     private TextView elevation;
     private TextView azimuth;
     private TextView timezone;
+    private TextView timestamp;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class ReadingsFragment extends Fragment{
         elevation = root.findViewById(R.id.tv_elevation);
         azimuth = root.findViewById(R.id.tv_azimuth);
         timezone = root.findViewById(R.id.tv_timezone);
+        timestamp = root.findViewById(R.id.tv_timestamp);
         getDatabase();
         reterieveData();
 
@@ -83,6 +85,7 @@ public class ReadingsFragment extends Fragment{
                 elevation.setText("Elevation: " + ds.getElevation());
                 azimuth.setText("Azimuth: " + ds.getAzimuth());
                 timezone.setText("Timezone: " + ds.getTimezone());
+                timestamp.setText("Timestamp: " +ds.getTimestamp());
             }
 
             private String convertTimestamp(String timestamp){
@@ -100,7 +103,8 @@ public class ReadingsFragment extends Fragment{
                     latitude.setText("Latitude: "+ds.getLatitude());
                     elevation.setText("Elevation: " + ds.getElevation());
                     azimuth.setText("Azimuth: " + ds.getAzimuth());
-                    timezone.setText("Timezone: " + ds.getTimezone());
+                    timestamp.setText(convertTimestamp(ds.getTimestamp()));
+
 
             }
 
@@ -137,7 +141,7 @@ public class ReadingsFragment extends Fragment{
                         dataStructure.setElevation(a.getValue(ReadingsStructure.class).getElevation());
                         dataStructure.setTimezone(a.getValue(ReadingsStructure.class).getTimezone());
                         dataStructure.setAzimuth(a.getValue(ReadingsStructure.class).getAzimuth());
-
+                        dataStructure.setTimestamp(a.getValue(ReadingsStructure.class).getTimestamp());
                         arraylist.add(dataStructure);  // now all the data is in arraylist.
                         Log.d("MapleLeaf", "dataStructure " + dataStructure.getTimestamp());
                     }

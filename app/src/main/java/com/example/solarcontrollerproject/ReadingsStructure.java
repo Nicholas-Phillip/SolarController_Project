@@ -13,16 +13,17 @@ public class ReadingsStructure {
         private double currentHarvest;
         private double averageHarvest;  //30 minute average
         private double totalHarvest;  //30 minute harvest
-        private long timestamp;
+        private String timestamp;
 
 
 
-    public ReadingsStructure(String longitude, String latitude, String elevation, String azimuth, String timezone) {
+    public ReadingsStructure(String longitude, String latitude, String elevation, String azimuth, String timezone, String timestamp) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.elevation = elevation;
         this.azimuth = azimuth;
         this.timezone = timezone;
+        this.timestamp=timestamp;
     }
 
     public ReadingsStructure(){}
@@ -91,15 +92,15 @@ public class ReadingsStructure {
         this.totalHarvest = totalHarvest;
     }
 
-    public long getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
-    public ReadingsStructure(String longitude, String latitude, String elevation, String azimuth, String timezone, double currentHarvest, double averageHarvest, double totalHarvest, long timestamp) {
+    public ReadingsStructure(String longitude, String latitude, String elevation, String azimuth, String timezone, double currentHarvest, double averageHarvest, double totalHarvest, String timestamp) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.elevation = elevation;

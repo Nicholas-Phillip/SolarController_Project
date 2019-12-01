@@ -78,13 +78,14 @@ public class WriteDB extends AppCompatActivity {
 
     private ReadingsStructure createData(Editable longitude, Editable latitude, Editable elevation, Editable azimuth,Editable timezone1){
         // TODO: Get the timestamp
-        //Long time = System.currentTimeMillis()/1000;
-        //String timestamp = time.toString();
+        Long time = System.currentTimeMillis()/1000;
+        String timestamp = time.toString();
         return new ReadingsStructure(String.valueOf(longitude),
                 String.valueOf(latitude),
                 String.valueOf(elevation),
                 String.valueOf(azimuth),
-                String.valueOf(timezone1));
+                String.valueOf(timezone1),
+                timestamp);
     }
     private void getDatabase(){
         // TODO: Find the reference form the database.
