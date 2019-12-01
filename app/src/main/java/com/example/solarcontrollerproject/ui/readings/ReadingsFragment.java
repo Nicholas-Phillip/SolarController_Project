@@ -16,6 +16,11 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.solarcontrollerproject.R;
 import com.example.solarcontrollerproject.ReadingsStructure;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +41,9 @@ public class ReadingsFragment extends Fragment{
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     ReadingsStructure mData;
-
+    List<ReadingsStructure> firebaseData = new ArrayList<>();
+    private int N = 20;
+    private BarChart barchart;
     private TextView longitude;
     private TextView latitude;
     private TextView elevation;
@@ -62,11 +69,14 @@ public class ReadingsFragment extends Fragment{
         azimuth = root.findViewById(R.id.tv_azimuth);
         timezone = root.findViewById(R.id.tv_timezone);
         timestamp = root.findViewById(R.id.tv_timestamp);
+        barchart = root.findViewById(R.id.firebasebar_chart);
+
         getDatabase();
         reterieveData();
 
         return root;
     }
+
     private void getDatabase(){
         // TODO: Find the reference form the database.
         database = FirebaseDatabase.getInstance();
