@@ -9,4 +9,29 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="language_entries">
+        <item>English</item>
+        <item>French</item>
+    </string-array>
+
+    <string-array name="language_entries_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="Color">
+        <item>Default</item>
+        <item>Yellow</item>
+        <item>Sunset</item>
+
+    </string-array>
+
+    <string-array name="ColorNumber">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+
+    </string-array>
+
 </resources>

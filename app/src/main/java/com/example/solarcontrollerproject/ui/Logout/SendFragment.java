@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.solarcontrollerproject.Login;
 import com.example.solarcontrollerproject.MainActivity;
 import com.example.solarcontrollerproject.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +41,7 @@ public class SendFragment extends Fragment {
         });
 
         Logout = root.findViewById(R.id.Logout_button);
+        signout();
 
         return root;
     }
@@ -49,9 +51,10 @@ public class SendFragment extends Fragment {
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 //Toast.makeText(getApplicationContext(), "You have been Signed Out",
-                 //     Toast.LENGTH_LONG).show();
+                 Toast.makeText(getActivity().getApplicationContext(), "You have been Signed Out",
+                      Toast.LENGTH_LONG).show();
                 SignoutfromDatabase();
+                Transfer();
             }
         });
     }
@@ -61,11 +64,11 @@ public class SendFragment extends Fragment {
         // TODO: Logout from Firebase.
         mAuth.signOut();
     }
-    /*
-    private void Tranfer ()
+
+    private void Transfer ()
     {
-        Intent i = new Intent(this,MainActivity.class)
+        Intent i = new Intent(getActivity().getApplicationContext(), Login.class);
                 startActivity(i);
 
-    }*/
+    }
 }

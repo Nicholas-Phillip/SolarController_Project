@@ -8,4 +8,13 @@
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
+
+<color name="colorprimary2">#FF5722</color>
+<color name="colorPrimaryDark2">#E64A19</color>
+<color name="primary_light2">#FFCCBC</color>
+<color name="colorAccent2">#FFC107 </color>
+<color name="primary_text2">#212121</color>
+<color name="secondary_text2">#757575</color>
+<color name="icons2">#FFFFFF</color>
+<color name="divider2">#BDBDBD</color>
 </resources>

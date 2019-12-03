@@ -1,11 +1,14 @@
 package com.example.solarcontrollerproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -37,13 +40,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO 3:
-        setTheme(R.style.AppTheme_NoActionBar);
+        ProcessPreference();
+        //setTheme(R.style.AppTheme_NoActionBar);
+        //setTheme(R.style.AppThemeGreen_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         FloatingActionButton fab2 = findViewById(R.id.fab2);
+
         //displayemail = findViewById(R.id.tv_email);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +139,35 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void ProcessPreference() {
+
+        // TODO 9: This is to load the preference from the default PreferenceScreen setting screen.   finished.
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        // boolean grid = settings.getBoolean("check_box_preference_1", false);
+        String color = settings.getString("list_preference_1", "1");
+        Boolean tired = settings.getBoolean("check_box_preference_1", false);
+        Log.d("MapleLeaf", "Color Index is: " + color);
+        Log.d("MapleLeaf", "Tired? -  " + String.valueOf(tired));
+        switch (Integer.parseInt(color)) //https://www.materialpalette.com/
+        {
+            case 1:
+                setTheme(R.style.AppTheme_NoActionBar);
+            break;
+
+            case 2:   // Yellow
+                setTheme(R.style.AppThemeGreen_NoActionBar);
+               break;
+            case 3:   // Sunset
+                setTheme(R.style.AppThemeSunset_NoActionBar);
+                break;
+
+            default:
+                setTheme(R.style.AppTheme_NoActionBar);
+                break;
+        }
+
     }
 
     }

@@ -35,6 +35,14 @@
             app:key="switch_preference_1"
             app:title="@string/dark_theme" />
 
+        <ListPreference
+            app:defaultValue="1"
+            app:entries="@array/Color"
+            app:entryValues="@array/ColorNumber"
+            app:key="list_preference_1"
+            app:summary="Choose A different color theme for the APP"
+            app:title="Change Color Theme" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
