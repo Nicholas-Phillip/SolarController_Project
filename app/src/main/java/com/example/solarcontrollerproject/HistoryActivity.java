@@ -96,8 +96,8 @@ public class HistoryActivity extends AppCompatActivity {
         dataset.setColors(ColorTemplate.COLORFUL_COLORS);  // set the color of this chart.
         dataset.setValueTextSize(14);
         // TODO: Get the LineData Object from dataset.
-        BarData linedata = new BarData(dataset);
-        barchart.setData(linedata);
+        BarData barData = new BarData(dataset);
+        barchart.setData(barData);
         // TODO: This is a must to refresh the chart.
         barchart.invalidate(); // refresh
     }
