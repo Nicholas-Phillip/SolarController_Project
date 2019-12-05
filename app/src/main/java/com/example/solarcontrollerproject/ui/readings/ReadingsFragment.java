@@ -1,10 +1,12 @@
 package com.example.solarcontrollerproject.ui.readings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,13 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.solarcontrollerproject.HistoryActivity;
 import com.example.solarcontrollerproject.R;
 import com.example.solarcontrollerproject.ReadingsStructure;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -41,15 +39,13 @@ public class ReadingsFragment extends Fragment{
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     ReadingsStructure mData;
-    List<ReadingsStructure> firebaseData = new ArrayList<>();
-    private int N = 20;
-    private BarChart barchart;
     private TextView longitude;
     private TextView latitude;
     private TextView elevation;
     private TextView azimuth;
     private TextView timezone;
     private TextView timestamp;
+    private Button history;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -69,10 +65,21 @@ public class ReadingsFragment extends Fragment{
         azimuth = root.findViewById(R.id.tv_azimuth);
         timezone = root.findViewById(R.id.tv_timezone);
         timestamp = root.findViewById(R.id.tv_timestamp);
+        history = root.findViewById(R.id.bt_history);
+
        // barchart = root.findViewById(R.id.firebasebar_chart);
+
 
         getDatabase();
         reterieveData();
+
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(getActivity().getApplicationContext(), HistoryActivity.class);
+                startActivity(intent1);
+            }
+        });
 
         return root;
     }
@@ -95,7 +102,7 @@ public class ReadingsFragment extends Fragment{
                 elevation.setText("Elevation: " + ds.getElevation());
                 azimuth.setText("Azimuth: " + ds.getAzimuth());
                 timezone.setText("Timezone: " + ds.getTimezone());
-                timestamp.setText("Timestamp: " +ds.getTimestamp());
+                timestamp.setText("Timestamp: " +convertTimestamp(ds.getTimestamp()));
             }
 
             private String convertTimestamp(String timestamp){
@@ -113,7 +120,7 @@ public class ReadingsFragment extends Fragment{
                     latitude.setText("Latitude: "+ds.getLatitude());
                     elevation.setText("Elevation: " + ds.getElevation());
                     azimuth.setText("Azimuth: " + ds.getAzimuth());
-                    timestamp.setText(convertTimestamp(ds.getTimestamp()));
+                timestamp.setText("Timestamp: " +convertTimestamp(ds.getTimestamp()));
 
 
 
