@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO 3:
-        ProcessPreference();
+        Changetheme();
         //setTheme(R.style.AppTheme_NoActionBar);
         //setTheme(R.style.AppThemeGreen_NoActionBar);
         super.onCreate(savedInstanceState);
@@ -96,11 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-  /*  private void showuser()  //finsih diplaying user when logged in
-    {
-        user = findViewById(R.id.ShowUser);
-        user.setText("User "+ user.getUser() + " is now Logged In");
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -141,8 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void ProcessPreference() {
-
+    private void Changetheme() {
         // TODO 9: This is to load the preference from the default PreferenceScreen setting screen.   finished.
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         // boolean grid = settings.getBoolean("check_box_preference_1", false);
