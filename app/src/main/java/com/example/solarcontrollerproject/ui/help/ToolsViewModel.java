@@ -1,4 +1,4 @@
-package com.example.solarcontrollerproject.ui.tools;
+package com.example.solarcontrollerproject.ui.help;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,7 +10,7 @@ public class ToolsViewModel extends ViewModel {
 
     public ToolsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is tools fragment");
+       // mText.setValue("This is tools fragment");
     }
 
     public LiveData<String> getText() {

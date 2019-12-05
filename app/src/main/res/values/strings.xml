@@ -60,5 +60,6 @@
     <string name="azimuth">Azimuth</string>
     <string name="timezone">Timezone</string>
     <string name="local_bar">Previous Harvest</string>
+    <string name="status">Status</string>
 
 </resources>
