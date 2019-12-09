@@ -52,13 +52,6 @@ public class ReadingsFragment extends Fragment{
         readingsViewModel =
                 ViewModelProviders.of(this).get(ReadingsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_readings, container, false);
-        final TextView textView = root.findViewById(R.id.text_readings);
-        readingsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         longitude = root.findViewById(R.id.tv_longitude);
         latitude = root.findViewById(R.id.tv_latitude);
         elevation = root.findViewById(R.id.tv_elevation);

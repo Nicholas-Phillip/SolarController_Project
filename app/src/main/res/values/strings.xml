@@ -61,5 +61,9 @@
     <string name="timezone">Timezone</string>
     <string name="local_bar">Previous Harvest</string>
     <string name="status">Status</string>
+    <string name="sun_s_position">Sun\'s Position</string>
+    <string name="location">Location</string>
+    <string name="readings">Readings</string>
+    <string name="history">History</string>
 
 </resources>

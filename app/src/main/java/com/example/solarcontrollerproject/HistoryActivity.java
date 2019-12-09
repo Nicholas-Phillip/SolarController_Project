@@ -37,7 +37,7 @@ public class HistoryActivity extends AppCompatActivity {
     private BarChart barchart;
     private FirebaseDatabase database = null;
     private DatabaseReference ref = null;
-    private int N = 3;
+    private int N = 20;
     String[] XLabels = new String[N];
     List<ReadingsStructure> firebaseData = new ArrayList<>();
     private boolean firstTimeDrew;
@@ -87,7 +87,7 @@ public class HistoryActivity extends AppCompatActivity {
         List<BarEntry> entrylist = new ArrayList();
         // TODO: Entry is the element of the data input to the chart. All the data should be organized as Entries' ArrayList
         for (ReadingsStructure ds: firebaseData){
-            BarEntry e = new BarEntry (i++, (float) ds.getAverageHarvest());
+            BarEntry e = new BarEntry (i++, Float.parseFloat(ds.getElevation()));
             entrylist.add(e);
         }
 
