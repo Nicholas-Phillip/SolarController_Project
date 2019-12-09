@@ -105,9 +105,9 @@ public class ReadingsFragment extends Fragment{
                 azimuth.setText("Azimuth: " + ds.getAzimuth()+ "\u00B0");
                 timezone.setText("Timezone: " + ds.getTimezone());
                 timestamp.setText("Timestamp: " +convertTimestamp(ds.getTimestamp()));
-                currentRead.setText("Current Reading: " + df2.format(ds.getCurrentHarvest()) + "V");
-                aveRead.setText("Average Reading: " + df2.format(ds.getAverageHarvest()) + "V");
-                totalRead.setText("Total Reading: " + df2.format(ds.getTotalHarvest()) + "V");
+                currentRead.setText("Current Reading: " + df2.format(ds.getCurrentHarvest()) + "kWh");
+                aveRead.setText("Average Reading: " + df2.format(ds.getAverageHarvest()) + "kWh");
+                totalRead.setText("Total Reading: " + df2.format(ds.getTotalHarvest()) + "kWh");
             }
 
             private String convertTimestamp(String timestamp){
@@ -126,9 +126,9 @@ public class ReadingsFragment extends Fragment{
                     elevation.setText("Elevation: " + ds.getElevation());
                     azimuth.setText("Azimuth: " + ds.getAzimuth());
                     timestamp.setText("Timestamp: " +convertTimestamp(ds.getTimestamp()));
-                currentRead.setText("Current Reading: " + df2.format(ds.getCurrentHarvest()) + "V");
-                aveRead.setText("Average Reading: " + df2.format(ds.getAverageHarvest()) + "V");
-                totalRead.setText("Total Reading: " + df2.format(ds.getTotalHarvest()) + "V");
+                currentRead.setText("Current Reading: " + df2.format(ds.getCurrentHarvest()) + "kWh");
+                aveRead.setText("Average Reading: " + df2.format(ds.getAverageHarvest()) + "kWh");
+                totalRead.setText("Total Reading: " + df2.format(ds.getTotalHarvest()) + "kWh");
 
 
 

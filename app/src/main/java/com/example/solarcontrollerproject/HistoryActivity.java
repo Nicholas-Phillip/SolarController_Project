@@ -90,7 +90,7 @@ public class HistoryActivity extends AppCompatActivity{
         }
         // TODO: Set text description of the xAxis
         Description desc = new Description();
-        desc.setText("LineChart from Firebase");
+        desc.setText("Average Harvest in kWh");
         desc.setTextSize(15);
         linechart.setDescription(desc);
 
@@ -110,7 +110,7 @@ public class HistoryActivity extends AppCompatActivity{
         }
 
         // TODO: find the dataset of the ArrayList.
-        LineDataSet dataset = new LineDataSet(entrylist, "Average Power");
+        LineDataSet dataset = new LineDataSet(entrylist, "Average Power Harvest");
         dataset.setColor(R.color.colorAccent);  // set the color of this chart.
         dataset.setValueTextSize(14);
         // TODO: Get the LineData Object from dataset.

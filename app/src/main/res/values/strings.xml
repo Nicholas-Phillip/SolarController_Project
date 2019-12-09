@@ -59,7 +59,7 @@
     <string name="elevation">Elevation</string>
     <string name="azimuth">Azimuth</string>
     <string name="timezone">Timezone</string>
-    <string name="local_bar">Previous Harvest</string>
+    <string name="local_bar">Previous Average Harvest</string>
     <string name="status">Status</string>
     <string name="sun_s_position">Sun\'s Position</string>
     <string name="location">Location</string>
