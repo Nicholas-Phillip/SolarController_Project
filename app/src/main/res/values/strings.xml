@@ -65,5 +65,10 @@
     <string name="location">Location</string>
     <string name="readings">Readings</string>
     <string name="history">History</string>
+    <string name="auto_align">Auto Align</string>
+    <string name="tilt">Tilt</string>
+    <string name="rotate">Rotate</string>
+    <string name="tilt_control">Tilt Control</string>
+    <string name="rotation_control">Rotation Control</string>
 
 </resources>
