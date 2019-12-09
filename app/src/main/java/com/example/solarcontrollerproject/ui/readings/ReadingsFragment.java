@@ -32,6 +32,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class ReadingsFragment extends Fragment{
 
@@ -46,7 +48,10 @@ public class ReadingsFragment extends Fragment{
     private TextView timezone;
     private TextView timestamp;
     private Button history;
-
+    private TextView currentRead;
+    private TextView aveRead;
+    private TextView totalRead;
+    private static DecimalFormat df2;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         readingsViewModel =
@@ -58,6 +63,9 @@ public class ReadingsFragment extends Fragment{
         azimuth = root.findViewById(R.id.tv_azimuth);
         timezone = root.findViewById(R.id.tv_timezone);
         timestamp = root.findViewById(R.id.tv_timestamp);
+        currentRead = root.findViewById(R.id.tv_currentRead);
+        aveRead = root.findViewById(R.id.tv_aveRead);
+        totalRead = root.findViewById(R.id.tv_totalRead);
         history = root.findViewById(R.id.bt_history);
 
        // barchart = root.findViewById(R.id.firebasebar_chart);
@@ -89,13 +97,17 @@ public class ReadingsFragment extends Fragment{
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                df2 = new DecimalFormat("#.##");
                 ReadingsStructure ds = dataSnapshot.getValue(ReadingsStructure.class);
                 longitude.setText("Longitude: "+ ds.getLongitude());
                 latitude.setText("Latitude: "+ds.getLatitude());
-                elevation.setText("Elevation: " + ds.getElevation());
-                azimuth.setText("Azimuth: " + ds.getAzimuth());
+                elevation.setText("Elevation: " + ds.getElevation()+ "\u00B0");
+                azimuth.setText("Azimuth: " + ds.getAzimuth()+ "\u00B0");
                 timezone.setText("Timezone: " + ds.getTimezone());
                 timestamp.setText("Timestamp: " +convertTimestamp(ds.getTimestamp()));
+                currentRead.setText("Current Read: " + df2.format(ds.getCurrentHarvest()) + "V");
+                aveRead.setText("Current Read: " + df2.format(ds.getAverageHarvest()) + "V");
+                totalRead.setText("Current Read: " + df2.format(ds.getTotalHarvest()) + "V");
             }
 
             private String convertTimestamp(String timestamp){
@@ -113,7 +125,10 @@ public class ReadingsFragment extends Fragment{
                     latitude.setText("Latitude: "+ds.getLatitude());
                     elevation.setText("Elevation: " + ds.getElevation());
                     azimuth.setText("Azimuth: " + ds.getAzimuth());
-                timestamp.setText("Timestamp: " +convertTimestamp(ds.getTimestamp()));
+                    timestamp.setText("Timestamp: " +convertTimestamp(ds.getTimestamp()));
+                currentRead.setText("Current Read: " + df2.format(ds.getCurrentHarvest()) + "V");
+                aveRead.setText("Current Read: " + df2.format(ds.getAverageHarvest()) + "V");
+                totalRead.setText("Current Read: " + df2.format(ds.getTotalHarvest()) + "V");
 
 
 
