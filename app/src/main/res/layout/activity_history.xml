@@ -7,8 +7,8 @@
     tools:context=".HistoryActivity">
 
     <!--TODO : Add LineChart Views to the Layout. -->
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/firebasebar_chart"
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/firebaseline_chart"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

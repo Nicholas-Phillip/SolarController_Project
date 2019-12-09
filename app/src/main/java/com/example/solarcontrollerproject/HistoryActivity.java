@@ -8,15 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -30,13 +29,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class HistoryActivity extends AppCompatActivity {
+import static java.util.Collections.*;
 
-    private BarChart barchart;
+public class HistoryActivity extends AppCompatActivity{
+
+    private LineChart linechart;
     private FirebaseDatabase database = null;
     private DatabaseReference ref = null;
     private int N = 20;
@@ -46,12 +46,13 @@ public class HistoryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //setTheme(R.style.AppTheme_ActionBar);
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         setupTitleandHomeButton();
+        firstTimeDrew = false;
         // TODO 1: Find the chart
-        barchart = findViewById(R.id.firebasebar_chart);
+        linechart = findViewById(R.id.firebaseline_chart);
 
         // TODO 2: Find the Database.
       getDatabase();
@@ -61,6 +62,7 @@ public class HistoryActivity extends AppCompatActivity {
 
 
     }
+
     private void getDatabase(){
         // TODO: Find the reference form the database.
         database = FirebaseDatabase.getInstance();
@@ -68,54 +70,67 @@ public class HistoryActivity extends AppCompatActivity {
         String path = "userdata/" + mAuth.getUid();  // read from the user account.
         ref = database.getReference(path);
     }
+
     private void drawGraph() {
+
         if (firebaseData.size() > N)  // Should have a guard to make sure we always draw the most recent N numbers.
             firebaseData = firebaseData.subList(firebaseData.size()-N, firebaseData.size());
 
+        //Collections.sort(firebaseData);
 
+        for (int i=0; i< firebaseData.size(); i++){
+            // TODO: Define the XLabels of the chart.
+            try{
+                // XLabels[i] = firebaseData.get(i).getTimestamp();
+                XLabels[i] = convertTimestamp(firebaseData.get(i).getTimestamp());
+            }
+            catch (Exception e){
+                Log.d("MapleLeaf", "Error Happened: " + e.getMessage());
+            }
+        }
         // TODO: Set text description of the xAxis
-
         Description desc = new Description();
-        desc.setText("Average Harvest History");
+        desc.setText("LineChart from Firebase");
         desc.setTextSize(15);
-        desc.setPosition(700,100);
-        barchart.setDescription(desc);
-        barchart.animateXY(2000,2000);
+        linechart.setDescription(desc);
+
+        linechart.animateXY(2000,2000);
+
         // TODO: Set the X-axis labels
         setAndValidateLabels();
 
         // TODO: Set LineData Entries
         int i = 0;
-        List<BarEntry> entrylist = new ArrayList();
+        List<Entry> entrylist = new ArrayList();
         // TODO: Entry is the element of the data input to the chart. All the data should be organized as Entries' ArrayList
         for (ReadingsStructure ds: firebaseData){
-            BarEntry e = new BarEntry (i++, Float.parseFloat(ds.getElevation()));
+            // Get the humidity from the firebase.
+            Entry e = new Entry (i++, Float.parseFloat(String.valueOf(ds.getAverageHarvest())));
             entrylist.add(e);
         }
 
         // TODO: find the dataset of the ArrayList.
-        BarDataSet dataset = new BarDataSet(entrylist, "Average Harvest");
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS);  // set the color of this chart.
+        LineDataSet dataset = new LineDataSet(entrylist, "Average Power");
+        dataset.setColor(R.color.colorAccent);  // set the color of this chart.
         dataset.setValueTextSize(14);
         // TODO: Get the LineData Object from dataset.
-        BarData barData = new BarData(dataset);
-        barchart.setData(barData);
+        LineData linedata = new LineData(dataset);
+        linechart.setData(linedata);
         // TODO: This is a must to refresh the chart.
-        barchart.invalidate(); // refresh
+        linechart.invalidate(); // refresh
     }
 
     private void setAndValidateLabels() {
         // TODO: Set the labels to be displayed.
-        XAxis xAxis = barchart.getXAxis();
+        XAxis xAxis = linechart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
         xAxis.setLabelRotationAngle(-30f);  // rotate the xAxis label for 30 degrees.
         xAxis.setValueFormatter(new IAxisValueFormatter(){
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                // Seems to be a bug in the library code value should not be less than 0 or more than N-1.
-                // When asking for the most recent data.
-                if ((value <0) || (value > N-1))return "";
+                // Seems to be a bug in the code value should not be less than 0 or more than N-1
+                if ((value <0) || (value >N-1))return "";
                 return XLabels[(int) value];
             }
         });
@@ -124,21 +139,16 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void loadDatabase(DatabaseReference ref) {
         // Last N data entries from Database, these are automatically the N most recent data
-        Query recentPostsQuery = ref.limitToLast(N).orderByChild("timestamp");
+        Query recentPostsQuery = ref.limitToLast(N);  // get the most recent N data
 
-        // NOTICE: Firebase Value event is always called after the ChildAdded event.
+         //NOTICE: Firebase Value event is always called after the ChildAdded event.
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.d("MapleLeaf", "finished");
-
-                for (int i=0; i< firebaseData.size(); i++){
-                    // TODO: Define the XLabels of the chart.
-                    XLabels[i] = convertTimestamp(firebaseData.get(i).getTimestamp());
-                }
-
                 // TODO 4: Now all the query data is in List firebaseData, Follow the similar procedure in Line activity.
                 drawGraph();
+
                 firstTimeDrew = true;
             }
 
@@ -148,29 +158,7 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
         recentPostsQuery.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                if (dataSnapshot != null && dataSnapshot.getValue() != null) {
-                    // TODO: handle all the returned data. Similar to the Firebase read structure event.
-                    ReadingsStructure dataStructure = new ReadingsStructure();
-                    dataStructure.setLongitude(dataSnapshot.getValue(ReadingsStructure.class).getLongitude());
-                    dataStructure.setLatitude(dataSnapshot.getValue(ReadingsStructure.class).getLatitude());
-                    dataStructure.setAzimuth(dataSnapshot.getValue(ReadingsStructure.class).getAzimuth());
-                    dataStructure.setElevation(dataSnapshot.getValue(ReadingsStructure.class).getElevation());
-                    dataStructure.setTimezone(dataSnapshot.getValue(ReadingsStructure.class).getTimezone());
-                    dataStructure.setAverageHarvest(dataSnapshot.getValue(ReadingsStructure.class).getAverageHarvest());
-                    dataStructure.setCurrentHarvest(dataSnapshot.getValue(ReadingsStructure.class).getCurrentHarvest());
-                    dataStructure.setTotalHarvest(dataSnapshot.getValue(ReadingsStructure.class).getTotalHarvest());
-                    String timestamp = dataSnapshot.getValue(ReadingsStructure.class).getTimestamp();
-                    dataStructure.setTimestamp(timestamp);
 
-                    firebaseData.add(dataStructure);  // now all the data is in arraylist.
-                    Log.d("MapleLeaf", "dataStructure " + dataStructure.getTimestamp());
-                }
-                // TODO: if already drew but still come to here, there is only one possibility that a new node is added to the database.
-                if (firstTimeDrew)
-                    drawGraph();
-            }
 
 
             @Override
@@ -187,8 +175,7 @@ public class HistoryActivity extends AppCompatActivity {
                     dataStructure.setAverageHarvest(dataSnapshot.getValue(ReadingsStructure.class).getAverageHarvest());
                     dataStructure.setCurrentHarvest(dataSnapshot.getValue(ReadingsStructure.class).getCurrentHarvest());
                     dataStructure.setTotalHarvest(dataSnapshot.getValue(ReadingsStructure.class).getTotalHarvest());
-                    String timestamp = dataSnapshot.getValue(ReadingsStructure.class).getTimestamp();
-                    dataStructure.setTimestamp(timestamp);
+                    dataStructure.setTimestamp(dataSnapshot.getValue(ReadingsStructure.class).getTimestamp());
                     boolean updated = false;
                     for (int i = 0; i<firebaseData.size(); i++){
                         if (firebaseData.get(i).getTimestamp().equals(dataStructure.getTimestamp()))
@@ -204,6 +191,33 @@ public class HistoryActivity extends AppCompatActivity {
                 }
                 // TODO 4: Now all the query data is in List firebaseData, Follow the similar procedure in Line activity.
                 drawGraph();
+            }
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                if (dataSnapshot != null && dataSnapshot.getValue() != null) {
+                    // TODO: handle all the returned data. Similar to the Firebase read structure event.
+                    ReadingsStructure dataStructure = new ReadingsStructure();
+                    dataStructure.setLongitude(dataSnapshot.getValue(ReadingsStructure.class).getLongitude());
+                    dataStructure.setLatitude(dataSnapshot.getValue(ReadingsStructure.class).getLatitude());
+                    dataStructure.setAzimuth(dataSnapshot.getValue(ReadingsStructure.class).getAzimuth());
+                    dataStructure.setElevation(dataSnapshot.getValue(ReadingsStructure.class).getElevation());
+                    dataStructure.setTimezone(dataSnapshot.getValue(ReadingsStructure.class).getTimezone());
+                    dataStructure.setAverageHarvest(dataSnapshot.getValue(ReadingsStructure.class).getAverageHarvest());
+                    dataStructure.setCurrentHarvest(dataSnapshot.getValue(ReadingsStructure.class).getCurrentHarvest());
+                    dataStructure.setTotalHarvest(dataSnapshot.getValue(ReadingsStructure.class).getTotalHarvest());
+                    dataStructure.setTimestamp(dataSnapshot.getValue(ReadingsStructure.class).getTimestamp());
+
+                    firebaseData.add(dataStructure);  // now all the data is in arraylist.
+                    Log.d("MapleLeaf", "dataStructure " + dataStructure.getTimestamp());
+                }
+                try{
+                    // TODO: if already drew but still come to here, there is only one possibility that a new node is added to the database.
+                    if (firstTimeDrew)
+                        drawGraph();
+                }
+                catch (Error e){
+                    Log.d("MapleLeaf", "Error Happened: " + e.getMessage());
+                }
             }
 
             @Override
