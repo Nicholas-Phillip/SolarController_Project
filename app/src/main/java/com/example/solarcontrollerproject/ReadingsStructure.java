@@ -16,16 +16,6 @@ public class ReadingsStructure {
         private String timestamp;
 
 
-
-    public ReadingsStructure(String longitude, String latitude, String elevation, String azimuth, String timezone, String timestamp) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.elevation = elevation;
-        this.azimuth = azimuth;
-        this.timezone = timezone;
-        this.timestamp=timestamp;
-    }
-
     public ReadingsStructure(){}
 
     public String getLongitude() {
