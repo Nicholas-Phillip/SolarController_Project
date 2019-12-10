@@ -30,10 +30,6 @@
 
     <PreferenceCategory app:title="@string/theme_header">
 
-        <SwitchPreference
-            app:defaultValue="false"
-            app:key="switch_preference_1"
-            app:title="@string/dark_theme" />
 
         <ListPreference
             app:defaultValue="1"

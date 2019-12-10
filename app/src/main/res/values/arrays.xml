@@ -22,7 +22,6 @@
 
     <string-array name="Color">
         <item>Default</item>
-        <item>Yellow</item>
         <item>Sunset</item>
 
     </string-array>
@@ -30,7 +29,6 @@
     <string-array name="ColorNumber">
         <item>1</item>
         <item>2</item>
-        <item>3</item>
 
     </string-array>
 

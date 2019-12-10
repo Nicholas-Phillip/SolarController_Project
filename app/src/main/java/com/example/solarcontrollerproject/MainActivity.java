@@ -150,10 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 setTheme(R.style.AppTheme_NoActionBar);
             break;
 
-            case 2:   // Yellow
-                setTheme(R.style.AppThemeGreen_NoActionBar);
-               break;
-            case 3:   // Sunset
+            case 2:   // Sunset
                 setTheme(R.style.AppThemeSunset_NoActionBar);
                 break;
 
